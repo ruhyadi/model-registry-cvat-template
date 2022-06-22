@@ -35,8 +35,20 @@ You must configure three important scripts to deploy the model to cvat: `main.py
 
 `main.py` is a script used to initiate and inference models. Inside `main.py` there are two functions: `init_context` and `handler`.The `init_context` function initiates the model, while the `handler` function is used for the inference model. The goal of `main.py` is to generate a response as `json`.
 
-In the `init_context` function, our model will be loaded. We may need some dependencies code according to the model we use. Therefore, we can use `model_handler.py` to create a model loader function.
-
-In the `handler` function, 
+The author has provided a `#TODO` that you can follow along:
+1. In the `init_context` function, load `model` according to the load model function of `model_handler`.
+2. In the `handler` function, change the message in `context.logger.info()`.
+3. Set the desired threshold value (default: 0.5).
+4. Change the inference model mechanism; the final result will be `results` which contains a dictionary (NOTE: for object detection task):
+```yaml
+results = {
+    "confidence": 0.8,
+    "label": "car",
+    "xmin": 0.1,
+    "ymin": 0.2,
+    "xmax": 0.3,
+    "ymax": 0.4,
+    }
+```
 
 ### Model Handler (`model_handler.py`)

@@ -16,16 +16,20 @@ def init_context(context):
     context.logger.info("Init context...100%")
 
 def handler(context, event):
-    context.logger.info("Run yolo-v5 model")
+    # TODO: change YOUR_MODEL
+    context.logger.info("Run YOUR_MODEL")
     data = event.body
     buf = io.BytesIO(base64.b64decode(data["image"]))
+    # TODO: change threshold value, default: 0.5
     threshold = float(data.get("threshold", 0.5))
     context.user_data.model.conf = threshold
     image = Image.open(buf)
-    yolo_results_json = context.user_data.model(image).pandas().xyxy[0].to_dict(orient='records')
+    
+    # TODO: change inference mechanism
+    results = context.user_data.model(image)
 
     encoded_results = []
-    for result in yolo_results_json:
+    for result in results:
         encoded_results.append({
             'confidence': result['confidence'],
             'label': result['name'],
