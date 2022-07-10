@@ -10,7 +10,7 @@ def init_context(context):
 
     # Read the DL model
     # TODO: load your model with model_hander utils
-    model = load_model(model_path='weights/yolov5s.pt')
+    model = load_model(configs="model_path/model.pt")
     context.user_data.model = model
 
     context.logger.info("Init context...100%")
